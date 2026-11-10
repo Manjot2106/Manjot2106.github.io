@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Portfolio Manjot Singh</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio de Manjot Singh : cybersécurité, systèmes et réseaux. BUT Réseaux &amp; Télécommunications, École 42. Recherche un stage de 6 mois ou une alternance en Île-de-France.">
+<meta property="og:title" content="Manjot Singh · Cybersécurité, systèmes et réseaux">
+<meta property="og:description" content="BUT Réseaux &amp; Télécommunications, École 42. Recherche un stage de 6 mois ou une alternance en Île-de-France.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://manjot2106.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1014'/%3E%3Crect x='6' y='8' width='4' height='16' fill='%23f28a1e'/%3E%3Crect x='11.5' y='8' width='4' height='16' fill='%232fa35e'/%3E%3Crect x='17' y='8' width='4' height='16' fill='%232f72d6'/%3E%3Crect x='22.5' y='8' width='4' height='16' fill='%238a5a3b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}document.documentElement.classList.add('js')</script>
+<style>
+/* Mise en page : une baie réseau lue de haut en bas. Bandeau aux couleurs du câblage T568B,
+   héros (nom + carte réseau des projets), puis sections en deux colonnes : titre à gauche, contenu à droite. */
+:root{
+  color-scheme:dark;
+  /* neutres : graphite légèrement bleuté */
+  --bg:#0d1014; --surface:#141920; --surface-2:#1c232d; --line:#27303c; --line-strong:#3b4757;
+  --fg:#e9edf2; --muted:#98a4b5; --faint:#6f7b8c;
+  /* les quatre paires du câble Ethernet + un rouge réservé au trafic bloqué */
+  --orange:#ff9838; --green:#42d392; --blue:#5aa9ff; --brown:#c48f6b; --red:#ff6f66;
+  --accent:var(--orange); --accent-fill:#ff9838; --on-accent:#17100a;
+  /* bandeau T568B (teintes fixes) */
+  --c-or:#f28a1e; --c-gr:#2fa35e; --c-bl:#2f72d6; --c-br:#8a5a3b; --c-wh:#f5f6f8;
+  /* typographie */
+  --font-display:"Archivo","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --fs-xs:.76rem; --fs-s:.88rem; --fs-m:1.02rem; --fs-l:1.22rem; --fs-xl:clamp(1.7rem,3vw,2.1rem);
+  --gutter:20px; --head-h:57px; --r:8px;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --bg:#f1f3f6; --surface:#ffffff; --surface-2:#e6eaf0; --line:#d3dae3; --line-strong:#aab5c3;
+    --fg:#10151c; --muted:#556172; --faint:#7d8999;
+    --orange:#b84a00; --green:#117a4a; --blue:#1a62c5; --brown:#8a5a3a; --red:#c5352d;
+    --accent:var(--orange); --accent-fill:#ff9838; --on-accent:#17100a;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f1f3f6; --surface:#ffffff; --surface-2:#e6eaf0; --line:#d3dae3; --line-strong:#aab5c3;
+  --fg:#10151c; --muted:#556172; --faint:#7d8999;
+  --orange:#b84a00; --green:#117a4a; --blue:#1a62c5; --brown:#8a5a3a; --red:#c5352d;
+  --accent:var(--orange); --accent-fill:#ff9838; --on-accent:#17100a;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 var(--fs-m)/1.6 var(--font-body);font-synthesis:none;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+[hidden]{display:none!important}
+img,svg{max-width:100%}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+::selection{background:var(--accent-fill);color:var(--on-accent)}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+.mono{font:500 var(--fs-xs)/1.4 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- bandeau T568B ---------- */
+.t568{display:flex;height:6px}
+.t568 i{flex:1}
+.t568 i:nth-child(1){background:repeating-linear-gradient(135deg,var(--c-wh) 0 7px,var(--c-or) 7px 14px)}
+.t568 i:nth-child(2){background:var(--c-or)}
+.t568 i:nth-child(3){background:repeating-linear-gradient(135deg,var(--c-wh) 0 7px,var(--c-gr) 7px 14px)}
+.t568 i:nth-child(4){background:var(--c-bl)}
+.t568 i:nth-child(5){background:repeating-linear-gradient(135deg,var(--c-wh) 0 7px,var(--c-bl) 7px 14px)}
+.t568 i:nth-child(6){background:var(--c-gr)}
+.t568 i:nth-child(7){background:repeating-linear-gradient(135deg,var(--c-wh) 0 7px,var(--c-br) 7px 14px)}
+.t568 i:nth-child(8){background:var(--c-br)}
+
+/* ---------- en-tête ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:1rem;min-height:56px}
+.brand{display:inline-flex;align-items:center;gap:.65rem;text-decoration:none;font:500 .86rem/1 var(--font-mono);letter-spacing:.02em;white-space:nowrap}
+.rj{display:inline-flex;gap:1.5px;padding:3px 3px;border:1px solid var(--line-strong);border-radius:3px}
+.rj i{width:2.5px;height:12px}
+.rj i:nth-child(1){background:linear-gradient(var(--c-wh) 50%,var(--c-or) 50%)}
+.rj i:nth-child(2){background:var(--c-or)}
+.rj i:nth-child(3){background:linear-gradient(var(--c-wh) 50%,var(--c-gr) 50%)}
+.rj i:nth-child(4){background:var(--c-bl)}
+.rj i:nth-child(5){background:linear-gradient(var(--c-wh) 50%,var(--c-bl) 50%)}
+.rj i:nth-child(6){background:var(--c-gr)}
+.rj i:nth-child(7){background:linear-gradient(var(--c-wh) 50%,var(--c-br) 50%)}
+.rj i:nth-child(8){background:var(--c-br)}
+.nav{display:none;margin-left:auto;gap:1.5rem}
+.nav a{font:500 var(--fs-xs)/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:.5rem 0;transition:color .15s}
+.nav a:hover{color:var(--fg)}
+.top-act{display:flex;align-items:center;gap:.5rem;margin-left:auto}
+.icon-btn{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:6px;border:1px solid var(--line);background:transparent;cursor:pointer;transition:border-color .15s}
+.icon-btn:hover{border-color:var(--fg)}
+@media (min-width:1000px){.nav{display:flex}.top-act{margin-left:1rem}}
+
+/* ---------- boutons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.74rem 1.1rem;border-radius:6px;border:1px solid var(--line-strong);background:transparent;font:600 .95rem/1 var(--font-body);text-decoration:none;cursor:pointer;white-space:nowrap;transition:border-color .15s,filter .15s}
+.btn:hover{border-color:var(--fg)}
+.btn svg{flex:none}
+.btn-p{background:var(--accent-fill);border-color:var(--accent-fill);color:var(--on-accent)}
+.btn-p:hover{border-color:var(--accent-fill);filter:brightness(1.08)}
+.btn-s{padding:.6rem .8rem;font-size:.86rem}
+
+/* ---------- héros ---------- */
+.hero{padding-block:clamp(2.2rem,5vw,4.2rem) clamp(2.5rem,6vw,4.5rem)}
+.hero-grid{display:grid;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.status{display:flex;gap:.65rem;align-items:baseline;font:500 var(--fs-xs)/1.5 var(--font-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.led{flex:none;width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 22%,transparent);transform:translateY(-1px)}
+.name{margin-top:1.3rem;font:800 clamp(3rem,14vw,5.6rem)/.9 var(--font-display);font-stretch:125%;letter-spacing:-.015em;text-transform:uppercase}
+.name span{display:block}
+.role{margin-top:1.3rem;font:600 clamp(1.15rem,2.2vw,1.45rem)/1.25 var(--font-display);font-stretch:112%;color:var(--accent)}
+.lede{margin-top:1rem;max-width:52ch;color:var(--muted);font-size:1.08rem}
+.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+@media (min-width:920px){
+  .hero-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+  .name{font-size:clamp(3.4rem,6.9vw,5.6rem)}
+}
+
+/* ---------- schémas réseau ---------- */
+.topo{background-color:var(--surface);background-image:radial-gradient(var(--line) 1px,transparent 1.2px);background-size:18px 18px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.topo svg{display:block;width:100%;height:auto;margin-inline:auto;font-family:var(--font-mono)}
+.topo figcaption{display:flex;flex-wrap:wrap;gap:.35rem 1.1rem;align-items:center;padding:.7rem .9rem;border-top:1px solid var(--line);background:var(--surface);font:400 var(--fs-xs)/1.45 var(--font-mono);color:var(--muted)}
+.topo figcaption .cap{margin-right:auto}
+.lg{display:inline-flex;align-items:center;gap:.45rem;white-space:nowrap}
+.lg::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pc)}
+.lg.ok{--pc:var(--blue)} .lg.alt{--pc:var(--orange)} .lg.bad{--pc:var(--red)}
+.z{fill:color-mix(in srgb,var(--zc) 9%,transparent);stroke:color-mix(in srgb,var(--zc) 60%,transparent);stroke-width:1;stroke-dasharray:4 4}
+.z-ext{--zc:var(--red)} .z-dmz{--zc:var(--orange)} .z-lan{--zc:var(--green)} .z-neutral{--zc:var(--muted)}
+.t-z{font-size:9px;font-weight:500;letter-spacing:.09em;fill:color-mix(in srgb,var(--zc) 72%,var(--fg))}
+.lk{fill:none;stroke:color-mix(in srgb,var(--fg) 38%,var(--surface));stroke-width:1.5}
+.lk.dash{stroke-dasharray:4 4}
+.lk.tun{stroke:var(--blue);stroke-width:2;stroke-dasharray:7 4}
+.tun-bg{stroke:color-mix(in srgb,var(--blue) 24%,transparent);stroke-width:10;stroke-linecap:round}
+.g{fill:var(--surface);stroke:var(--fg);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.g .in{fill:none}
+.g .led-s{fill:var(--green);stroke:none}
+.n.bad .g{stroke:var(--red)}
+.t-l,.t-s,.t-k,.t-n{paint-order:stroke;stroke:var(--surface);stroke-width:3.5px;stroke-linejoin:round}
+.t-l{font-size:10.5px;font-weight:500;fill:var(--fg)}
+.t-s,.t-k,.t-n{font-size:9.5px;fill:var(--muted)}
+.t-b{font-size:10.5px;font-weight:500;fill:var(--fg)}
+.t-cmd{font-size:11px;font-weight:500;fill:var(--accent)}
+.pk{stroke:var(--surface);stroke-width:1}
+.pk.ok{fill:var(--blue)} .pk.alt{fill:var(--orange)} .pk.bad{fill:var(--red)}
+.n.go{cursor:pointer;outline:none}
+.n.go .hit{fill:transparent;stroke:transparent;stroke-width:1.5;stroke-dasharray:3 3}
+.n.go .g,.n.go .t-l{transition:stroke .15s,fill .15s}
+.n.go:hover .g,.n.go.on .g{stroke:var(--accent)}
+.n.go:hover .t-l,.n.go.on .t-l{fill:var(--accent)}
+.n.go:focus-visible .hit{stroke:var(--blue)}
+.hero-map.m svg{max-width:430px}
+
+/* ---------- sections ---------- */
+.sec{padding-block:clamp(3rem,7vw,5.2rem);border-top:1px solid var(--line);scroll-margin-top:var(--head-h)}
+.sec-grid{display:grid;gap:1.6rem 3rem}
+.sec-head h2{font:700 var(--fs-xl)/1.05 var(--font-display);font-stretch:112%;letter-spacing:-.01em;text-wrap:balance}
+.sec-head p{margin-top:.6rem;color:var(--muted);font-size:var(--fs-s);max-width:34ch}
+@media (min-width:920px){
+  .sec-grid{grid-template-columns:minmax(0,250px) minmax(0,1fr)}
+  .sec-grid.full{grid-template-columns:minmax(0,1fr)}
+  .sec-grid.full .sec-head{display:flex;align-items:baseline;gap:1.5rem}
+  .sec-grid.full .sec-head p{margin:0;max-width:none}
+}
+
+/* profil */
+.profil{display:grid;gap:2rem 3rem}
+.profil-txt{display:grid;gap:1rem;max-width:60ch;align-content:start}
+.profil-txt p:first-child{font-size:var(--fs-l);line-height:1.45}
+.profil-txt p+p{color:var(--muted)}
+.fiche{align-self:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.fiche div{display:grid;gap:.2rem;padding:.85rem 1.05rem}
+.fiche div+div{border-top:1px solid var(--line)}
+.fiche dd{font-weight:500;line-height:1.45}
+.fiche dd small{display:block;font-size:var(--fs-s);font-weight:400;color:var(--muted)}
+@media (min-width:1080px){.profil{grid-template-columns:minmax(0,1fr) minmax(0,400px)}}
+
+/* compétences */
+.skills{display:grid;border-top:1px solid var(--line)}
+.skill{display:grid;gap:.7rem 2rem;padding-block:1.05rem;border-bottom:1px solid var(--line)}
+.skill h3{display:flex;align-items:baseline;gap:.7rem;font:600 1rem/1.3 var(--font-body)}
+.sq{flex:none;width:9px;height:9px;border-radius:2px;background:var(--pc,var(--fg))}
+.c-securite{--pc:var(--orange)} .c-reseau{--pc:var(--blue)} .c-systemes{--pc:var(--green)} .c-supervision{--pc:var(--brown)} .c-programmation{--pc:var(--fg)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chips li{padding:.3rem .55rem;border:1px solid var(--line);border-radius:4px;background:var(--surface);font:400 .8rem/1.3 var(--font-mono)}
+@media (min-width:700px){.skill{grid-template-columns:minmax(0,220px) minmax(0,1fr)}}
+
+/* expériences + formation */
+.rows{display:grid;border-top:1px solid var(--line)}
+.row{display:grid;gap:.6rem 2rem;padding-block:1.5rem;border-bottom:1px solid var(--line)}
+.row-when{display:grid;gap:.15rem;align-content:start}
+.row-when span+span{color:var(--faint)}
+.row h3{font:700 var(--fs-l)/1.25 var(--font-display);font-stretch:108%}
+.row .org{margin-top:.2rem;color:var(--muted)}
+.row .desc{margin-top:.6rem;color:var(--muted);max-width:66ch}
+.bul{display:grid;gap:.4rem;margin-top:.9rem;max-width:70ch}
+.bul li{position:relative;padding-left:1.2rem}
+.bul li::before{content:"";position:absolute;left:0;top:.74em;width:.6rem;height:2px;background:var(--accent)}
+.bul code,.pinfo code{font:500 .9em var(--font-mono)}
+@media (min-width:700px){.row{grid-template-columns:minmax(0,220px) minmax(0,1fr)}}
+
+/* ---------- projets ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:.45rem}
+.fbtn{display:inline-flex;align-items:center;gap:.5rem;padding:.48rem .75rem;border:1px solid var(--line);border-radius:6px;background:transparent;font:500 var(--fs-s)/1 var(--font-body);color:var(--muted);cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+.fbtn:hover{border-color:var(--line-strong);color:var(--fg)}
+.fbtn[aria-pressed="true"]{background:var(--surface-2);border-color:var(--line-strong);color:var(--fg)}
+.fbtn b{font:500 var(--fs-xs)/1 var(--font-mono);color:var(--faint)}
+.explorer{display:grid;gap:1.5rem 2.5rem;margin-top:1.4rem;align-items:start}
+.pgroup+.pgroup{margin-top:1.6rem}
+.pgroup>h3{padding-bottom:.6rem;border-bottom:1px solid var(--line)}
+.proj{border-bottom:1px solid var(--line);scroll-margin-top:calc(var(--head-h) + 6px)}
+.prow-h{font:inherit}
+.prow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.85rem;align-items:center;width:100%;padding:.8rem .7rem;border:0;background:transparent;text-align:left;cursor:default;border-radius:0}
+.js .prow{cursor:pointer;transition:background .15s}
+.js .prow:hover{background:var(--surface)}
+.js .proj.on .prow{background:var(--surface-2)}
+.pdots{display:grid;gap:3px;align-content:center}
+.pdots i{width:9px;height:9px;border-radius:2px;background:var(--pc)}
+.ptxt{display:grid;gap:.2rem;min-width:0}
+.ptitle{font:600 1rem/1.3 var(--font-body)}
+.ptools{font:400 var(--fs-xs)/1.4 var(--font-mono);color:var(--muted)}
+.pchev{width:8px;height:8px;border-right:1.5px solid var(--faint);border-top:1.5px solid var(--faint);transform:rotate(135deg);transition:transform .2s,border-color .2s;margin-right:.3rem}
+.proj.on .pchev{border-color:var(--accent);transform:rotate(-45deg)}
+.pbody{display:grid;gap:1.2rem;padding:.4rem 0 1.6rem}
+.pinfo{display:grid;gap:.5rem}
+.pbt{display:none;font:700 clamp(1.3rem,2.2vw,1.6rem)/1.2 var(--font-display);font-stretch:108%;text-wrap:balance}
+.pinfo .bul{margin-top:.5rem}
+.pview:empty{display:none}
+@media (min-width:980px){
+  .js .explorer{grid-template-columns:minmax(300px,390px) minmax(0,1fr)}
+  .js .pview{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--head-h) + 18px)}
+  .js .proj .pchev,.js .proj.on .pchev{transform:rotate(45deg)}
+  .js .pview .pbody{padding:0}
+  .js .pview .pbt{display:block}
+  .js .pview .topo svg{max-width:560px}
+  .js .pview .bul{display:block;columns:2;column-gap:2.2rem;max-width:none}
+  .js .pview .bul li{break-inside:avoid;margin-bottom:.4rem}
+}
+@media (min-width:980px) and (max-height:820px){.js .pview .topo svg{max-width:430px}}
+
+/* ---------- contact + pied ---------- */
+.contact-lead{font:600 clamp(1.35rem,2.6vw,1.9rem)/1.25 var(--font-display);font-stretch:108%;max-width:30ch;text-wrap:balance}
+.contact-lead em{font-style:normal;color:var(--accent)}
+.clist{display:grid;margin-top:1.8rem;border-top:1px solid var(--line);max-width:760px}
+.clist li{display:grid;gap:.3rem 1.5rem;align-items:center;padding-block:.95rem;border-bottom:1px solid var(--line)}
+.cval{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1rem;min-width:0;font-weight:500}
+.cval a{overflow-wrap:anywhere;text-decoration-color:var(--line-strong);text-underline-offset:4px}
+.cval a:hover{text-decoration-color:var(--accent)}
+@media (min-width:700px){.clist li{grid-template-columns:150px minmax(0,1fr)}}
+.foot{padding-block:1.6rem 2.2rem}
+.foot-in{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="t568" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#haut" aria-label="Manjot Singh, retour en haut de page">
+      <span class="rj" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span>manjot singh</span>
+    </a>
+    <nav class="nav" aria-label="Sections de la page">
+      <a href="#profil">Profil</a>
+      <a href="#competences">Compétences</a>
+      <a href="#experiences">Expériences</a>
+      <a href="#projets">Projets</a>
+      <a href="#formation">Formation</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="top-act">
+      <button class="icon-btn" id="theme" type="button" aria-label="Basculer entre thème clair et thème sombre" title="Thème clair / sombre">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 2a7 7 0 0 1 0 14z" fill="currentColor"/></svg>
+      </button>
+      <a class="btn btn-s" data-cv href="CV_Manjot_Singh.pdf" download>CV
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5v8M3.5 6.5 7 10l3.5-3.5M2 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="status"><span class="led" aria-hidden="true"></span><span>Disponible · stage dès début décembre 2026 · alternance dès janvier 2027</span></p>
+      <h1 class="name"><span>Manjot</span> <span>Singh</span></h1>
+      <p class="role">Cybersécurité · Systèmes &amp; Réseaux</p>
+      <p class="lede">Diplômé d’un BUT Réseaux &amp; Télécommunications, orientation cybersécurité, et étudiant à l’École 42 (tronc commun terminé). Je cherche un stage de 6&nbsp;mois ou une alternance en Île-de-France.</p>
+      <div class="cta">
+        <a class="btn btn-p" href="#projets">Voir mes projets</a>
+        <a class="btn" data-cv href="CV_Manjot_Singh.pdf" download>Télécharger le CV
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5v8M3.5 6.5 7 10l3.5-3.5M2 12.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/manjot--singh/" target="_blank" rel="noopener">LinkedIn
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 2.5 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <figure class="topo hero-map" id="hero-map">
+      <div class="hero-svg"></div>
+      <figcaption>
+        <span class="cap">Chaque nœud de ce réseau est un projet réalisé en BUT ou à l’École&nbsp;42. Cliquez sur un nœud pour ouvrir sa fiche.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="profil">
+  <div class="wrap sec-grid">
+    <header class="sec-head"><h2>Profil</h2></header>
+    <div class="profil">
+      <div class="profil-txt">
+        <p>Diplômé d’un BUT Réseaux &amp; Télécommunications avec une orientation en cybersécurité, j’ai aussi terminé le tronc commun de l’École&nbsp;42.</p>
+        <p>Profil polyvalent, qui associe administration systèmes et réseaux, cybersécurité, programmation système et infrastructure. Expérience pratique en supervision réseau, configuration d’équipements, support informatique, sécurisation d’infrastructures, développement C/C++ et environnements Linux.</p>
+        <p>Je recherche une opportunité dans les domaines de la cybersécurité, des systèmes et réseaux, de la sécurité réseau, du SOC, du cloud ou de l’infrastructure.</p>
+      </div>
+      <dl class="fiche">
+        <div><dt class="mono">Stage</dt><dd>6 mois, à partir de début décembre 2026</dd></div>
+        <div><dt class="mono">Alternance</dt><dd>À partir de janvier 2027 <small>Rythme : 2 semaines en entreprise, 1 semaine à l’école</small></dd></div>
+        <div><dt class="mono">Domaines</dt><dd>Cybersécurité, SOC, systèmes et réseaux, sécurité réseau, cloud, infrastructure</dd></div>
+        <div><dt class="mono">Lieu</dt><dd>Île-de-France <small>Basé à Goussainville (95)</small></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="competences">
+  <div class="wrap sec-grid">
+    <header class="sec-head"><h2>Compétences</h2></header>
+    <div class="skills">
+      <div class="skill"><h3><i class="sq c-securite"></i>Cybersécurité</h3>
+        <ul class="chips"><li>Nmap</li><li>Nessus</li><li>Metasploit</li><li>Stormshield</li><li>IDS</li><li>IPS</li><li>VPN</li><li>OpenVPN</li><li>Scapy</li><li>GoPhish</li><li>Wireshark</li><li>iptables</li><li>DMZ</li><li>analyse de vulnérabilités</li><li>sécurité réseau</li><li>tests d’intrusion</li><li>filtrage réseau</li></ul></div>
+      <div class="skill"><h3><i class="sq c-reseau"></i>Réseaux</h3>
+        <ul class="chips"><li>TCP/IP</li><li>IPv4</li><li>IPv6</li><li>Ethernet</li><li>ARP</li><li>ICMP</li><li>TCP</li><li>UDP</li><li>VLAN</li><li>STP</li><li>routage inter-VLAN</li><li>DNS</li><li>DHCP</li><li>SSH</li><li>RIP</li><li>OSPF</li><li>BGP</li><li>MPLS</li><li>routage</li><li>switching</li><li>GNS3</li></ul></div>
+      <div class="skill"><h3><i class="sq c-systemes"></i>Systèmes et administration</h3>
+        <ul class="chips"><li>Linux</li><li>Unix</li><li>Windows</li><li>Bash</li><li>administration système</li><li>gestion des processus</li><li>services réseau</li><li>gestion des utilisateurs</li><li>gestion des permissions</li><li>analyse de logs</li></ul></div>
+      <div class="skill"><h3><i class="sq c-supervision"></i>Supervision et journalisation</h3>
+        <ul class="chips"><li>Centreon</li><li>Nagios</li><li>NRPE</li><li>SNMP</li><li>MIB</li><li>OID</li><li>snmpget</li><li>snmpwalk</li><li>snmpbulkwalk</li><li>traps SNMP</li><li>Syslog</li><li>rsyslog</li></ul></div>
+      <div class="skill"><h3><i class="sq c-systemes"></i>Administration d’annuaires</h3>
+        <ul class="chips"><li>LDAP</li><li>OpenLDAP</li><li>LDIF</li><li>slapd</li><li>ldapsearch</li><li>ldapadd</li><li>ldapmodify</li><li>ldapdelete</li><li>réplication LDAP</li></ul></div>
+      <div class="skill"><h3><i class="sq c-systemes"></i>Infrastructure et DevOps</h3>
+        <ul class="chips"><li>Docker</li><li>Docker Compose</li><li>NGINX</li><li>VMware</li><li>VirtualBox</li><li>conteneurisation</li><li>TLS</li></ul></div>
+      <div class="skill"><h3><i class="sq c-programmation"></i>Programmation et scripting</h3>
+        <ul class="chips"><li>C</li><li>C++</li><li>Python</li><li>Bash</li><li>JavaScript</li><li>programmation système</li><li>scripting d’automatisation</li><li>JSON</li></ul></div>
+      <div class="skill"><h3><i class="sq c-reseau"></i>Équipements</h3>
+        <ul class="chips"><li>MikroTik</li><li>Stormshield</li></ul></div>
+      <div class="skill"><h3><i class="sq c-programmation"></i>Bases de données</h3>
+        <ul class="chips"><li>MySQL</li><li>MariaDB</li><li>SQLite</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="experiences">
+  <div class="wrap sec-grid">
+    <header class="sec-head"><h2>Expériences</h2></header>
+    <div class="rows">
+      <article class="row">
+        <p class="row-when mono"><span>Juin – août 2025</span><span>Stage · Paris</span></p>
+        <div>
+          <h3>Technicien Systèmes &amp; Réseaux</h3>
+          <p class="org">Groupe TLH – TIPTOP Informatique &amp; Télécom</p>
+          <ul class="bul">
+            <li>Mise en place d’une solution de supervision d’infrastructures réseau avec Centreon.</li>
+            <li>Installation et configuration de la supervision d’équipements et services réseau.</li>
+            <li>Déploiement et configuration de routeurs MikroTik pour des clients TPE/PME.</li>
+            <li>Maintenance et réparation de postes de travail, serveurs et périphériques informatiques.</li>
+            <li>Diagnostic et résolution d’incidents systèmes et réseaux.</li>
+            <li>Assistance technique et support aux utilisateurs.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="row">
+        <p class="row-when mono"><span>Avril – juin 2024</span><span>Stage · Sarcelles</span></p>
+        <div>
+          <h3>Assistant Support Technique</h3>
+          <p class="org">Centre Social des Sablons</p>
+          <ul class="bul">
+            <li>Maintenance et réparation des équipements informatiques.</li>
+            <li>Diagnostic et résolution des pannes matérielles et logicielles.</li>
+            <li>Installation, configuration et mise à jour des systèmes d’exploitation.</li>
+            <li>Sécurisation et mise à jour des postes utilisateurs.</li>
+            <li>Optimisation des performances des équipements.</li>
+            <li>Assistance technique auprès des utilisateurs.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="projets">
+  <div class="wrap sec-grid full">
+    <header class="sec-head"><h2>Projets</h2><p>Onze projets réalisés en BUT et à l’École&nbsp;42, chacun avec son schéma de principe.</p></header>
+    <div>
+      <div class="filters" role="group" aria-label="Filtrer les projets par domaine">
+        <button class="fbtn" type="button" data-f="all" aria-pressed="true">Tous <b>11</b></button>
+        <button class="fbtn" type="button" data-f="securite" aria-pressed="false"><i class="sq c-securite"></i>Sécurité <b>5</b></button>
+        <button class="fbtn" type="button" data-f="reseau" aria-pressed="false"><i class="sq c-reseau"></i>Réseau <b>5</b></button>
+        <button class="fbtn" type="button" data-f="systemes" aria-pressed="false"><i class="sq c-systemes"></i>Systèmes <b>4</b></button>
+        <button class="fbtn" type="button" data-f="supervision" aria-pressed="false"><i class="sq c-supervision"></i>Supervision <b>1</b></button>
+        <button class="fbtn" type="button" data-f="programmation" aria-pressed="false"><i class="sq c-programmation"></i>Programmation <b>3</b></button>
+      </div>
+
+      <div class="explorer">
+        <div class="plist">
+          <div class="pgroup">
+            <h3 class="mono">BUT Réseaux &amp; Télécommunications</h3>
+
+            <article class="proj" data-id="stormshield" data-tags="securite reseau">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-stormshield">
+                <span class="pdots" aria-hidden="true"><i class="c-securite"></i><i class="c-reseau"></i></span>
+                <span class="ptxt"><span class="ptitle">Sécurisation d’une infrastructure réseau</span><span class="ptools">Stormshield / Réseau</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-stormshield">
+                <figure class="topo" data-topo="stormshield"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · Stormshield / Réseau</p>
+                  <p class="pbt">Sécurisation d’une infrastructure réseau</p>
+                  <ul class="bul">
+                    <li>Configuration et administration d’un firewall Stormshield.</li>
+                    <li>Création et gestion de règles de filtrage réseau.</li>
+                    <li>Mise en place de politiques de sécurité.</li>
+                    <li>Analyse et surveillance des journaux du firewall.</li>
+                    <li>Configuration et administration de VLAN.</li>
+                    <li>Routage de plusieurs sous-réseaux dans un environnement GNS3.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="dmz" data-tags="securite reseau">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-dmz">
+                <span class="pdots" aria-hidden="true"><i class="c-securite"></i><i class="c-reseau"></i></span>
+                <span class="ptxt"><span class="ptitle">Mise en place d’une DMZ et filtrage réseau</span><span class="ptools">iptables / Linux / Sécurité</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-dmz">
+                <figure class="topo" data-topo="dmz"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · iptables / Linux / Sécurité</p>
+                  <p class="pbt">Mise en place d’une DMZ et filtrage réseau</p>
+                  <ul class="bul">
+                    <li>Conception d’une architecture réseau segmentée avec DMZ.</li>
+                    <li>Mise en place de règles de filtrage avec iptables.</li>
+                    <li>Configuration des chaînes INPUT, OUTPUT et FORWARD.</li>
+                    <li>Contrôle des communications entre réseau interne, DMZ et réseau externe.</li>
+                    <li>Application de politiques de filtrage et de restriction des flux réseau.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="pentest" data-tags="securite">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-pentest">
+                <span class="pdots" aria-hidden="true"><i class="c-securite"></i></span>
+                <span class="ptxt"><span class="ptitle">Pentest et analyse de vulnérabilités</span><span class="ptools">Nmap / Nessus / Metasploit</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-pentest">
+                <figure class="topo" data-topo="pentest"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · Nmap / Nessus / Metasploit</p>
+                  <p class="pbt">Pentest et analyse de vulnérabilités</p>
+                  <ul class="bul">
+                    <li>Réalisation de scans réseau avec Nmap.</li>
+                    <li>Identification de vulnérabilités avec Nessus.</li>
+                    <li>Exploitation de vulnérabilités dans un environnement pédagogique avec Metasploit.</li>
+                    <li>Tests d’injections SQL.</li>
+                    <li>Analyse de différentes méthodes d’exploitation et de leurs contre-mesures.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="offensive" data-tags="securite programmation">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-offensive">
+                <span class="pdots" aria-hidden="true"><i class="c-securite"></i><i class="c-programmation"></i></span>
+                <span class="ptxt"><span class="ptitle">Sécurité offensive et attaques réseau</span><span class="ptools">Scapy / Python / GoPhish</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-offensive">
+                <figure class="topo" data-topo="offensive"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · Scapy / Python / GoPhish</p>
+                  <p class="pbt">Sécurité offensive et attaques réseau</p>
+                  <ul class="bul">
+                    <li>Étude et mise en œuvre d’attaques ARP spoofing et SYN Flood dans un environnement de laboratoire.</li>
+                    <li>Développement en Python avec Scapy pour manipuler et analyser des paquets réseau.</li>
+                    <li>Mise en œuvre d’un scénario Man-in-the-Middle.</li>
+                    <li>Stockage et traitement de données au format JSON et SQL.</li>
+                    <li>Création de campagnes de phishing pédagogiques avec GoPhish.</li>
+                    <li>Analyse des risques et des failles de sécurité associées.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="vpn" data-tags="securite reseau">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-vpn">
+                <span class="pdots" aria-hidden="true"><i class="c-securite"></i><i class="c-reseau"></i></span>
+                <span class="ptxt"><span class="ptitle">Infrastructure VPN sécurisée</span><span class="ptools">OpenVPN / TUN-TAP / Routage</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-vpn">
+                <figure class="topo" data-topo="vpn"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · OpenVPN / TUN-TAP / Routage</p>
+                  <p class="pbt">Infrastructure VPN sécurisée</p>
+                  <ul class="bul">
+                    <li>Mise en place de tunnels OpenVPN entre plusieurs réseaux.</li>
+                    <li>Configuration de VPN de niveau 2 et de niveau 3.</li>
+                    <li>Manipulation des interfaces virtuelles TUN et TAP.</li>
+                    <li>Configuration du routage à travers les tunnels VPN.</li>
+                    <li>Mise en œuvre du chiffrement des communications entre équipements.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="supervision" data-tags="supervision">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-supervision">
+                <span class="pdots" aria-hidden="true"><i class="c-supervision"></i></span>
+                <span class="ptxt"><span class="ptitle">Supervision d’infrastructures réseau</span><span class="ptools">Nagios / SNMP / Syslog</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-supervision">
+                <figure class="topo" data-topo="supervision"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · Nagios / SNMP / Syslog</p>
+                  <p class="pbt">Supervision d’infrastructures réseau</p>
+                  <ul class="bul">
+                    <li>Installation et configuration d’une plateforme de supervision avec Nagios.</li>
+                    <li>Déclaration et supervision d’hôtes et de services réseau.</li>
+                    <li>Mise en place de la supervision distante avec NRPE.</li>
+                    <li>Utilisation de SNMP pour interroger les équipements réseau.</li>
+                    <li>Manipulation de MIB, OID, snmpget, snmpwalk et traps SNMP.</li>
+                    <li>Centralisation et analyse des journaux avec Syslog et rsyslog.</li>
+                    <li>Analyse de trames et protocoles avec Wireshark.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="services" data-tags="reseau systemes">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-services">
+                <span class="pdots" aria-hidden="true"><i class="c-reseau"></i><i class="c-systemes"></i></span>
+                <span class="ptxt"><span class="ptitle">Administration et services réseau</span><span class="ptools">Linux / Routage / Services</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-services">
+                <figure class="topo" data-topo="services"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · Linux / Routage / Services</p>
+                  <p class="pbt">Administration et services réseau</p>
+                  <ul class="bul">
+                    <li>Installation et configuration de serveurs Apache, FTP, DHCP, DNS et services de messagerie.</li>
+                    <li>Administration d’environnements IPv4 et IPv6.</li>
+                    <li>Configuration des protocoles OSPF, BGP et RIP.</li>
+                    <li>Mise en œuvre de SSH et gestion des communications TCP/IP.</li>
+                    <li>Configuration de topologies réseau et routage dans GNS3.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="ldap" data-tags="systemes">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-ldap">
+                <span class="pdots" aria-hidden="true"><i class="c-systemes"></i></span>
+                <span class="ptxt"><span class="ptitle">Administration d’un annuaire LDAP</span><span class="ptools">OpenLDAP / Linux / Authentification</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-ldap">
+                <figure class="topo" data-topo="ldap"></figure>
+                <div class="pinfo">
+                  <p class="mono">BUT R&amp;T · OpenLDAP / Linux / Authentification</p>
+                  <p class="pbt">Administration d’un annuaire LDAP</p>
+                  <ul class="bul">
+                    <li>Installation et configuration d’un serveur OpenLDAP.</li>
+                    <li>Administration de l’annuaire avec des fichiers LDIF.</li>
+                    <li>Création, modification, recherche et suppression d’entrées LDAP.</li>
+                    <li>Utilisation des commandes <code>ldapsearch</code>, <code>ldapadd</code>, <code>ldapmodify</code> et <code>ldapdelete</code>.</li>
+                    <li>Mise en place et étude de la réplication d’annuaires LDAP.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="pgroup">
+            <h3 class="mono">École 42</h3>
+
+            <article class="proj" data-id="ftirc" data-tags="programmation reseau">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-ftirc">
+                <span class="pdots" aria-hidden="true"><i class="c-programmation"></i><i class="c-reseau"></i></span>
+                <span class="ptxt"><span class="ptitle">ft_irc – Serveur IRC en C++</span><span class="ptools">C++ / Réseau / TCP-IP</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-ftirc">
+                <figure class="topo" data-topo="ftirc"></figure>
+                <div class="pinfo">
+                  <p class="mono">École 42 · C++ / Réseau / TCP-IP</p>
+                  <p class="pbt">ft_irc – Serveur IRC en C++</p>
+                  <ul class="bul">
+                    <li>Développement d’un serveur IRC multi-clients en C++.</li>
+                    <li>Mise en place des communications réseau à l’aide de sockets TCP/IP.</li>
+                    <li>Gestion simultanée de plusieurs connexions clients.</li>
+                    <li>Implémentation de l’authentification, des utilisateurs, channels et opérateurs.</li>
+                    <li>Implémentation de commandes du protocole IRC.</li>
+                    <li>Gestion des erreurs, déconnexions et échanges client-serveur.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="inception" data-tags="systemes">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-inception">
+                <span class="pdots" aria-hidden="true"><i class="c-systemes"></i></span>
+                <span class="ptxt"><span class="ptitle">Inception – Infrastructure conteneurisée</span><span class="ptools">Docker / Linux / NGINX</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-inception">
+                <figure class="topo" data-topo="inception"></figure>
+                <div class="pinfo">
+                  <p class="mono">École 42 · Docker / Linux / NGINX</p>
+                  <p class="pbt">Inception – Infrastructure conteneurisée</p>
+                  <ul class="bul">
+                    <li>Construction d’une infrastructure multi-conteneurs avec Docker.</li>
+                    <li>Orchestration des différents services avec Docker Compose.</li>
+                    <li>Déploiement de conteneurs NGINX, WordPress et MariaDB.</li>
+                    <li>Création et gestion de réseaux Docker.</li>
+                    <li>Mise en place de volumes persistants.</li>
+                    <li>Configuration de communications HTTPS/TLS.</li>
+                    <li>Gestion des variables d’environnement et des secrets nécessaires aux services.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="proj" data-id="minishell" data-tags="programmation systemes">
+              <h4 class="prow-h"><button class="prow" type="button" aria-controls="pb-minishell">
+                <span class="pdots" aria-hidden="true"><i class="c-programmation"></i><i class="c-systemes"></i></span>
+                <span class="ptxt"><span class="ptitle">Minishell – Shell Unix en C</span><span class="ptools">C / Linux / Unix</span></span>
+                <span class="pchev" aria-hidden="true"></span></button></h4>
+              <div class="pbody" id="pb-minishell">
+                <figure class="topo" data-topo="minishell"></figure>
+                <div class="pinfo">
+                  <p class="mono">École 42 · C / Linux / Unix</p>
+                  <p class="pbt">Minishell – Shell Unix en C</p>
+                  <ul class="bul">
+                    <li>Développement en C d’un shell reproduisant une partie du comportement de Bash.</li>
+                    <li>Gestion de l’exécution des commandes.</li>
+                    <li>Implémentation des pipes et redirections.</li>
+                    <li>Gestion des variables d’environnement.</li>
+                    <li>Gestion des signaux et codes de retour.</li>
+                    <li>Utilisation d’appels système Unix tels que <code>fork</code>, <code>execve</code>, <code>pipe</code> et <code>dup2</code>.</li>
+                    <li>Manipulation des processus et des descripteurs de fichiers.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="pview"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="formation">
+  <div class="wrap sec-grid">
+    <header class="sec-head"><h2>Formation</h2></header>
+    <div class="rows">
+      <article class="row">
+        <p class="row-when mono"><span>Tronc commun terminé</span><span>Paris</span></p>
+        <div>
+          <h3>École 42</h3>
+          <p class="desc">Formation intensive basée sur la réalisation de projets en programmation et informatique. Principaux domaines étudiés : C, C++, algorithmique, Unix/Linux, programmation système, réseaux, Docker et développement logiciel.</p>
+        </div>
+      </article>
+      <article class="row">
+        <p class="row-when mono"><span>2022 – 2025</span><span>Villetaneuse</span></p>
+        <div>
+          <h3>BUT Réseaux &amp; Télécommunications</h3>
+          <p class="org">Université Sorbonne Paris Nord</p>
+          <p class="desc">Formation en réseaux informatiques, télécommunications, administration systèmes, cybersécurité, programmation et infrastructures.</p>
+        </div>
+      </article>
+      <article class="row">
+        <p class="row-when mono"><span>2019 – 2022</span><span>Sarcelles</span></p>
+        <div>
+          <h3>Baccalauréat Technologique</h3>
+          <p class="org">Lycée de la Tourelle</p>
+        </div>
+      </article>
+      <article class="row">
+        <p class="row-when mono"><span>Langues</span></p>
+        <div>
+          <h3>Anglais</h3>
+          <p class="org">B2 – Intermédiaire avancé</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap sec-grid">
+    <header class="sec-head"><h2>Contact</h2></header>
+    <div>
+      <p class="contact-lead">Disponible pour un <em>stage de 6&nbsp;mois</em> dès début décembre 2026, ou une <em>alternance</em> dès janvier 2027.</p>
+      <ul class="clist">
+        <li><span class="mono">E-mail</span>
+          <span class="cval"><a id="mail" href="mailto:singhmanjot5241@gmail.com">singhmanjot5241@gmail.com</a>
+          <button class="btn btn-s" id="copy-mail" type="button">Copier</button></span></li>
+        <li><span class="mono">LinkedIn</span>
+          <span class="cval"><a href="https://www.linkedin.com/in/manjot--singh/" target="_blank" rel="noopener">linkedin.com/in/manjot--singh</a></span></li>
+        <li><span class="mono">GitHub</span>
+          <span class="cval"><a href="https://github.com/Manjot2106" target="_blank" rel="noopener">github.com/Manjot2106</a></span></li>
+        <li data-cv-wrap><span class="mono">CV</span>
+          <span class="cval"><a data-cv href="CV_Manjot_Singh.pdf" download>Télécharger le CV (PDF, 1 page)</a></span></li>
+        <li><span class="mono">Lieu</span>
+          <span class="cval">Goussainville (95), Île-de-France</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-in mono"><span>Manjot Singh · 2026</span><span>Bandeau : code couleur du câblage T568B</span></div>
+  </div>
+  <div class="t568" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var root=document.documentElement;
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- thème ---------- */
+var themeBtn=document.getElementById('theme');
+if(themeBtn)themeBtn.addEventListener('click',function(){
+  var cur=root.getAttribute('data-theme')||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+  var next=cur==='dark'?'light':'dark';
+  root.setAttribute('data-theme',next);
+  try{localStorage.setItem('theme',next)}catch(e){}
+});
+
+/* ---------- CV : lien direct sur le site, enregistrement via la visionneuse quand la page est hébergée dedans ---------- */
+var cvLinks=[].slice.call(document.querySelectorAll('a[data-cv]'));
+function cvBox(a){return a.closest('[data-cv-wrap]')||a}
+if(window.claude&&typeof window.claude.use==='function'){
+  cvLinks.forEach(function(a){cvBox(a).hidden=true});
+  window.claude.use('downloads').then(function(dl){
+    if(!dl)return;
+    cvLinks.forEach(function(a){
+      cvBox(a).hidden=false;
+      a.addEventListener('click',function(e){
+        e.preventDefault();
+        fetch(a.getAttribute('href')).then(function(r){if(!r.ok)throw new Error('cv');return r.blob()})
+          .then(function(b){return dl.save({filename:'CV_Manjot_Singh.pdf',data:b})})
+          .catch(function(){});
+      });
+    });
+  }).catch(function(){});
+}
+
+/* ---------- copie de l'e-mail ---------- */
+var copyBtn=document.getElementById('copy-mail'),mailEl=document.getElementById('mail');
+if(copyBtn&&mailEl)copyBtn.addEventListener('click',function(){
+  var txt=mailEl.textContent.trim();
+  function selectIt(){var r=document.createRange();r.selectNodeContents(mailEl);var s=window.getSelection();s.removeAllRanges();s.addRange(r)}
+  var p=navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt):Promise.reject();
+  p.then(function(){copyBtn.textContent='Copié';setTimeout(function(){copyBtn.textContent='Copier'},1600)}).catch(selectIt);
+});
+
+/* ---------- moteur de schémas ---------- */
+var HALF={host:[13,11],server:[10,14],router:[14,14],fw:[15,11],cloud:[23,16],sw:[17,7],db:[11,13],term:[15,11]};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function half(n){if(n.k==='box')return[Math.max(34,n.t.length*6.4+18)/2,12];return HALF[n.k]}
+function glyph(n){
+  switch(n.k){
+    case'host':return'<rect x="-13" y="-10" width="26" height="17" rx="2"/><path class="in" d="M0 7v3.5M-6 10.5h12"/>';
+    case'server':return'<rect x="-10" y="-14" width="20" height="28" rx="2"/><path class="in" d="M-10-4.7h20M-10 4.7h20"/><circle class="led-s" cx="-5.6" cy="-9.4" r="1.3"/><circle class="led-s" cx="-5.6" cy="0" r="1.3"/><circle class="led-s" cx="-5.6" cy="9.4" r="1.3"/>';
+    case'router':return'<circle r="14"/><path class="in" d="M-8 0h16M0-8v16M5-3l3 3-3 3M-5-3l-3 3 3 3M-3-5l3-3 3 3M-3 5l3 3 3-3"/>';
+    case'fw':return'<rect x="-15" y="-11" width="30" height="22" rx="2"/><path class="in" d="M-15-3.7h30M-15 3.7h30M-5-11v7.3M5-11v7.3M-10-3.7v7.4M0-3.7v7.4M10-3.7v7.4M-5 3.7v7.3M5 3.7v7.3"/>';
+    case'cloud':return'<path d="M-13 15a9 9 0 0 1-1.5-17.8a12 12 0 0 1 22.5-3.2a10 10 0 0 1 5 21z"/>';
+    case'sw':return'<rect x="-17" y="-7" width="34" height="14" rx="2"/><path class="in" d="M-11 0h3M-5 0h3M2 0h3M8 0h3" stroke-width="2.4"/>';
+    case'db':return'<path d="M-11-9v18a11 4 0 0 0 22 0v-18"/><ellipse cx="0" cy="-9" rx="11" ry="4"/>';
+    case'term':return'<rect x="-15" y="-11" width="30" height="22" rx="3"/><path class="in" d="M-9-4l5 4-5 4M-1 5h8"/>';
+    case'box':var w=half(n)[0];return'<rect x="'+(-w)+'" y="-12" width="'+(2*w)+'" height="24" rx="4"/>';
+  }
+  return'';
+}
+function edge(n,tx,ty){
+  var dx=tx-n.x,dy=ty-n.y,h=n.h,pad=3,s;
+  if(n.k==='router'){var d=Math.sqrt(dx*dx+dy*dy)||1;s=(14+pad)/d}
+  else s=Math.min(dx?(h[0]+pad)/Math.abs(dx):1e9,dy?(h[1]+pad)/Math.abs(dy):1e9);
+  s=Math.min(s,1);return[n.x+dx*s,n.y+dy*s];
+}
+function f1(v){return Math.round(v*10)/10}
+function labels(n){
+  var hw=n.h[0],hh=n.h[1],lp=n.lp||'b',o='',t=n.k==='box'?null:n.t,s=n.s;
+  if(n.k==='box')o+='<text class="t-b" text-anchor="middle" y="3.7">'+esc(n.t)+'</text>';
+  if(lp==='b'){
+    if(t)o+='<text class="t-l" text-anchor="middle" y="'+(hh+14)+'">'+esc(t)+'</text>';
+    if(s)o+='<text class="t-s" text-anchor="middle" y="'+(hh+(t?26:13))+'">'+esc(s)+'</text>';
+  }else if(lp==='t'){
+    if(t)o+='<text class="t-l" text-anchor="middle" y="'+(-hh-(s?19:7))+'">'+esc(t)+'</text>';
+    if(s)o+='<text class="t-s" text-anchor="middle" y="'+(-hh-7)+'">'+esc(s)+'</text>';
+  }else{
+    var an=lp==='r'?'start':'end',x=lp==='r'?hw+8:-hw-8;
+    if(t)o+='<text class="t-l" text-anchor="'+an+'" x="'+x+'" y="'+(s?-2:3.7)+'">'+esc(t)+'</text>';
+    if(s)o+='<text class="t-s" text-anchor="'+an+'" x="'+x+'" y="'+(t?10:3.7)+'">'+esc(s)+'</text>';
+  }
+  return o;
+}
+function hitBox(n){
+  var hw=n.h[0],hh=n.h[1],lp=n.lp||'b',tw=Math.max((n.t||'').length*6.3,(n.s||'').length*5.7);
+  if(lp==='b'){var w=Math.max(2*hw,tw)+12;return[-w/2,-hh-6,w,2*hh+38]}
+  if(lp==='t'){var w2=Math.max(2*hw,tw)+12;return[-w2/2,-hh-32,w2,2*hh+38]}
+  if(lp==='r')return[-hw-6,-hh-8,2*hw+tw+20,2*hh+16];
+  return[-hw-tw-14,-hh-8,2*hw+tw+20,2*hh+16];
+}
+function draw(spec){
+  var W=spec.vb[0],H=spec.vb[1],N={},o='',speed=spec.speed||52;
+  spec.nodes.forEach(function(n){n.h=half(n);N[n.id]=n});
+  (spec.zones||[]).forEach(function(z){
+    var r=z.r,right=z.la==='r';
+    o+='<g class="z-'+z.c+'"><rect class="z" x="'+r[0]+'" y="'+r[1]+'" width="'+r[2]+'" height="'+r[3]+'" rx="8"/><text class="t-z" x="'+(right?r[0]+r[2]-9:r[0]+9)+'" y="'+(r[1]+15)+'"'+(right?' text-anchor="end"':'')+'>'+esc(z.t.toUpperCase())+'</text></g>';
+  });
+  (spec.links||[]).forEach(function(l){
+    var a=N[l[0]],b=N[l[1]],s=l[2]||{},p=edge(a,b.x,b.y),q=edge(b,a.x,a.y);
+    var c=' x1="'+f1(p[0])+'" y1="'+f1(p[1])+'" x2="'+f1(q[0])+'" y2="'+f1(q[1])+'"';
+    if(s.tun)o+='<line class="tun-bg"'+c+'/>';
+    o+='<line class="lk'+(s.dash?' dash':'')+(s.tun?' tun':'')+'"'+c+'/>';
+    if(s.t){var at=s.at||[(p[0]+q[0])/2,(p[1]+q[1])/2-6];o+='<text class="t-k" text-anchor="'+(s.an||'middle')+'" x="'+f1(at[0])+'" y="'+f1(at[1])+'">'+esc(s.t)+'</text>'}
+  });
+  (spec.notes||[]).forEach(function(t){o+='<text class="'+(t.cls||'t-n')+'" text-anchor="middle" x="'+t.x+'" y="'+t.y+'">'+esc(t.t)+'</text>'});
+  if(!reduce)(spec.flows||[]).forEach(function(f){
+    var pts=f.p.map(function(id){return[N[id].x,N[id].y]});
+    if(f.drop){var last=N[f.p[f.p.length-1]],prev=pts[pts.length-2];pts[pts.length-1]=edge(last,prev[0],prev[1])}
+    var len=0,d='';
+    pts.forEach(function(p,i){d+=(i?'L':'M')+f1(p[0])+' '+f1(p[1]);if(i){var q=pts[i-1];len+=Math.sqrt(Math.pow(p[0]-q[0],2)+Math.pow(p[1]-q[1],2))}});
+    var dur=f1(Math.max(len/speed,1.2)),n=f.n||1;
+    for(var i=0;i<n;i++){
+      var beg=-f1((f.b||0)+i*dur/n);
+      o+='<circle class="pk '+f.c+'" r="3.2"><animateMotion dur="'+dur+'s" begin="'+beg+'s" repeatCount="indefinite" path="'+d+'"/>'+(f.drop?'<animate attributeName="opacity" values="1;1;0" keyTimes="0;.8;1" dur="'+dur+'s" begin="'+beg+'s" repeatCount="indefinite"/>':'')+'</circle>';
+    }
+  });
+  spec.nodes.forEach(function(n){
+    var inner='<g class="g">'+glyph(n)+'</g>'+labels(n),tr=' transform="translate('+n.x+' '+n.y+')"';
+    if(n.go){var hb=hitBox(n);o+='<a class="n go'+(n.bad?' bad':'')+'" href="#projets" data-go="'+n.go+'" aria-label="Ouvrir le projet : '+esc(n.title||n.t)+'"'+tr+'><rect class="hit" x="'+f1(hb[0])+'" y="'+f1(hb[1])+'" width="'+f1(hb[2])+'" height="'+f1(hb[3])+'" rx="6"/>'+inner+'</a>'}
+    else o+='<g class="n'+(n.bad?' bad':'')+'"'+tr+'>'+inner+'</g>';
+  });
+  return'<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(spec.alt||'')+'">'+o+'</svg>';
+}
+function legend(spec){
+  var o='<span class="cap">Schéma de principe</span>',L=spec.legend||{};
+  ['ok','alt','bad'].forEach(function(k){if(L[k])o+='<span class="lg '+k+'">'+esc(L[k])+'</span>'});
+  return o;
+}
+
+/* ---------- les onze schémas de projet (repère 360 × 250) ---------- */
+var V=[360,250];
+var DIA={
+stormshield:{vb:V,alt:'Un firewall Stormshield filtre le trafic entre un réseau externe et deux VLAN reliés par un commutateur.',
+  zones:[{t:'VLAN A',c:'lan',la:'r',r:[244,22,108,86]},{t:'VLAN B',c:'lan',la:'r',r:[244,142,108,86]}],
+  nodes:[{id:'ext',k:'cloud',x:50,y:125,t:'Réseau externe',lp:'t'},{id:'fw',k:'fw',x:134,y:125,t:'Stormshield',s:'règles de filtrage'},{id:'sw',k:'sw',x:206,y:125},{id:'a',k:'host',x:298,y:74},{id:'b',k:'host',x:298,y:194}],
+  links:[['ext','fw'],['fw','sw'],['sw','a'],['sw','b']],
+  flows:[{p:['ext','fw','sw','a'],c:'ok'},{p:['ext','fw'],c:'bad',drop:1,b:.9},{p:['a','sw','b'],c:'ok',b:.6}],
+  legend:{ok:'trafic autorisé',bad:'trafic bloqué'}},
+dmz:{vb:V,alt:'Un pare-feu iptables sépare le réseau externe, la DMZ et le réseau interne.',
+  zones:[{t:'Réseau externe',c:'ext',r:[6,72,100,106]},{t:'DMZ',c:'dmz',r:[244,22,108,86]},{t:'Réseau interne',c:'lan',r:[244,142,108,86]}],
+  nodes:[{id:'ext',k:'cloud',x:56,y:132},{id:'fw',k:'fw',x:172,y:125,t:'iptables'},{id:'srv',k:'server',x:298,y:74},{id:'pc',k:'host',x:298,y:194}],
+  notes:[{x:172,y:239,t:'INPUT · OUTPUT · FORWARD'}],
+  links:[['ext','fw'],['fw','srv'],['fw','pc']],
+  flows:[{p:['ext','fw','srv'],c:'ok'},{p:['ext','fw'],c:'bad',drop:1,b:1.3},{p:['pc','fw','srv'],c:'ok',b:.7}],
+  legend:{ok:'flux autorisé',bad:'flux bloqué'}},
+pentest:{vb:V,alt:'Depuis un poste d’audit, trois étapes visent une cible en environnement pédagogique : scan avec Nmap, détection avec Nessus, exploitation avec Metasploit.',
+  zones:[{t:'Labo pédagogique',c:'lan',r:[236,58,116,134]}],
+  nodes:[{id:'a',k:'host',x:38,y:125,t:'Audit'},{id:'n1',k:'box',x:148,y:60,t:'Nmap',s:'scan réseau',lp:'t'},{id:'n2',k:'box',x:148,y:125,t:'Nessus',s:'vulnérabilités'},{id:'n3',k:'box',x:148,y:190,t:'Metasploit',s:'exploitation'},{id:'t',k:'server',x:294,y:124,t:'Cible'}],
+  links:[['a','n1'],['a','n2'],['a','n3'],['n1','t'],['n2','t'],['n3','t']],
+  flows:[{p:['a','n1','t'],c:'ok'},{p:['a','n2','t'],c:'alt',b:.8},{p:['a','n3','t'],c:'bad',b:1.7}],
+  legend:{ok:'scan',alt:'détection',bad:'exploitation'}},
+offensive:{vb:V,alt:'En laboratoire, un attaquant se place entre une victime et la passerelle par ARP spoofing et intercepte le trafic.',
+  zones:[{t:'Environnement de laboratoire',c:'lan',r:[6,6,348,238]}],
+  nodes:[{id:'v',k:'host',x:62,y:86,t:'Victime',lp:'t'},{id:'gw',k:'router',x:298,y:86,t:'Passerelle',lp:'t'},{id:'att',k:'host',x:180,y:186,t:'Attaquant',s:'Python · Scapy',bad:1}],
+  links:[['v','gw',{dash:1,t:'chemin normal'}],['v','att',{t:'ARP spoofing',at:[100,152],an:'end'}],['att','gw',{t:'Man-in-the-Middle',at:[250,152],an:'start'}]],
+  flows:[{p:['v','att','gw'],c:'bad'},{p:['gw','att','v'],c:'bad',b:1.1}],
+  legend:{bad:'trafic intercepté'}},
+vpn:{vb:V,alt:'Deux réseaux distants reliés par un tunnel OpenVPN chiffré entre leurs routeurs.',
+  zones:[{t:'Réseau A',c:'lan',r:[6,58,124,134]},{t:'Réseau B',c:'lan',r:[230,58,124,134]}],
+  nodes:[{id:'ha',k:'host',x:38,y:130},{id:'ra',k:'router',x:100,y:130,t:'OpenVPN'},{id:'rb',k:'router',x:260,y:130,t:'OpenVPN'},{id:'hb',k:'host',x:322,y:130}],
+  notes:[{x:180,y:118,t:'tunnel chiffré'},{x:180,y:224,t:'TUN : niveau 3 · TAP : niveau 2'}],
+  links:[['ha','ra'],['ra','rb',{tun:1}],['rb','hb']],
+  flows:[{p:['ha','ra','rb','hb'],c:'alt'},{p:['hb','rb','ra','ha'],c:'alt',b:1.4}],
+  legend:{alt:'trafic chiffré dans le tunnel'}},
+supervision:{vb:V,alt:'Un serveur Nagios interroge des hôtes et des équipements réseau avec NRPE et SNMP ; leurs journaux sont centralisés avec rsyslog.',
+  nodes:[{id:'nag',k:'server',x:44,y:122,t:'Nagios',s:'supervision'},{id:'d1',k:'host',x:180,y:52,t:'Hôte distant',s:'NRPE',lp:'t'},{id:'d2',k:'router',x:180,y:122,t:'Équipement réseau',s:'SNMP · MIB · OID'},{id:'d3',k:'sw',x:180,y:204,t:'Équipement réseau',s:'traps SNMP'},{id:'log',k:'server',x:316,y:122,t:'Journaux',s:'rsyslog'}],
+  links:[['nag','d1'],['nag','d2'],['nag','d3'],['d1','log',{dash:1}],['d2','log',{dash:1}],['d3','log',{dash:1}]],
+  flows:[{p:['nag','d1'],c:'ok'},{p:['nag','d2'],c:'ok',b:.5},{p:['d3','nag'],c:'alt',b:.2},{p:['d1','log'],c:'alt',b:.9},{p:['d2','log'],c:'alt',b:.3},{p:['d3','log'],c:'alt',b:1.4}],
+  legend:{ok:'interrogation NRPE / SNMP',alt:'traps et journaux'}},
+services:{vb:V,alt:'Des routeurs échangent leurs routes en OSPF, RIP et BGP et donnent accès à des serveurs DNS, DHCP, Apache, FTP et de messagerie.',
+  zones:[{t:'Services',c:'lan',r:[244,10,110,230]}],
+  nodes:[{id:'r1',k:'router',x:40,y:70},{id:'r2',k:'router',x:40,y:180},{id:'r3',k:'router',x:118,y:125},{id:'r4',k:'router',x:196,y:125},{id:'b1',k:'box',x:299,y:62,t:'DNS · DHCP'},{id:'b2',k:'box',x:299,y:125,t:'Apache · FTP'},{id:'b3',k:'box',x:299,y:188,t:'Messagerie'}],
+  notes:[{x:118,y:236,t:'IPv4 · IPv6'}],
+  links:[['r1','r3',{t:'OSPF',at:[90,84],an:'start'}],['r2','r3',{t:'RIP',at:[90,174],an:'start'}],['r3','r4',{t:'BGP'}],['r4','b1'],['r4','b2'],['r4','b3']],
+  flows:[{p:['r1','r3','r4','b1'],c:'ok'},{p:['r2','r3','r4','b3'],c:'ok',b:1.2},{p:['b2','r4','r3','r1'],c:'ok',b:.5}],
+  legend:{ok:'trafic routé'}},
+ldap:{vb:V,alt:'Un client interroge un serveur OpenLDAP dont l’annuaire est répliqué vers un second serveur.',
+  zones:[{t:'Annuaire',c:'neutral',r:[30,100,264,142]}],
+  nodes:[{id:'c',k:'host',x:40,y:52,t:'Client LDAP'},{id:'srv',k:'db',x:170,y:52,t:'OpenLDAP',s:'slapd',lp:'t'},{id:'rep',k:'db',x:314,y:52,t:'Réplica',lp:'t'},{id:'dc',k:'box',x:170,y:128,t:'dc=…'},{id:'o1',k:'box',x:104,y:172,t:'ou=…'},{id:'o2',k:'box',x:236,y:172,t:'ou=…'},{id:'u1',k:'box',x:64,y:216,t:'uid=…'},{id:'u2',k:'box',x:144,y:216,t:'uid=…'},{id:'u3',k:'box',x:236,y:216,t:'uid=…'}],
+  links:[['c','srv',{t:'ldapsearch'}],['srv','rep',{t:'réplication'}],['srv','dc'],['dc','o1'],['dc','o2'],['o1','u1'],['o1','u2'],['o2','u3']],
+  flows:[{p:['c','srv','dc','o1','u2'],c:'ok'},{p:['srv','rep'],c:'alt',b:.7}],
+  legend:{ok:'recherche dans l’annuaire',alt:'réplication'}},
+ftirc:{vb:V,alt:'Trois clients connectés en TCP/IP à un serveur IRC qui relaie leurs messages vers des channels.',
+  zones:[{t:'Channels',c:'neutral',r:[244,48,108,160]}],
+  nodes:[{id:'c1',k:'host',x:40,y:52,t:'client'},{id:'c2',k:'host',x:40,y:125,t:'client'},{id:'c3',k:'host',x:40,y:198,t:'client'},{id:'srv',k:'server',x:160,y:122,t:'ft_irc',s:'sockets TCP/IP'},{id:'h1',k:'box',x:298,y:102,t:'#channel'},{id:'h2',k:'box',x:298,y:168,t:'#channel'}],
+  links:[['c1','srv'],['c2','srv'],['c3','srv'],['srv','h1'],['srv','h2']],
+  flows:[{p:['c1','srv','h1'],c:'ok'},{p:['h1','srv','c2'],c:'ok',b:.9},{p:['c3','srv','h2'],c:'ok',b:.4}],
+  legend:{ok:'messages IRC'}},
+inception:{vb:V,alt:'Un client accède en HTTPS à NGINX, qui transmet à WordPress, lui-même relié à MariaDB ; les données sont dans des volumes persistants.',
+  zones:[{t:'Réseau Docker',c:'lan',r:[92,36,262,186]}],
+  nodes:[{id:'cl',k:'host',x:30,y:112,t:'Client'},{id:'ng',k:'box',x:136,y:112,t:'NGINX',s:'TLS'},{id:'wp',k:'box',x:214,y:112,t:'WordPress'},{id:'db',k:'box',x:302,y:112,t:'MariaDB'},{id:'v1',k:'db',x:214,y:178,t:'volume'},{id:'v2',k:'db',x:302,y:178,t:'volume'}],
+  links:[['cl','ng',{t:'HTTPS',at:[67,106]}],['ng','wp'],['wp','db'],['wp','v1',{dash:1}],['db','v2',{dash:1}]],
+  flows:[{p:['cl','ng','wp','db'],c:'ok'},{p:['db','wp','ng','cl'],c:'ok',b:1.5}],
+  legend:{ok:'requête et réponse'}},
+minishell:{vb:V,alt:'Le shell crée un processus par commande avec fork et execve, relie les commandes par un pipe et redirige la sortie vers un fichier avec dup2.',
+  notes:[{x:180,y:32,t:'$ cmd1 | cmd2 > fichier',cls:'t-cmd'}],
+  nodes:[{id:'sh',k:'term',x:38,y:135,t:'minishell'},{id:'fk',k:'box',x:116,y:135,t:'fork'},{id:'p1',k:'box',x:206,y:92,t:'cmd1',s:'execve',lp:'t'},{id:'p2',k:'box',x:206,y:178,t:'cmd2',s:'execve'},{id:'f',k:'box',x:312,y:178,t:'fichier'}],
+  links:[['sh','fk'],['fk','p1'],['fk','p2'],['p1','p2',{t:'pipe',at:[214,139],an:'start'}],['p2','f',{t:'dup2'}]],
+  flows:[{p:['sh','fk','p1'],c:'ok'},{p:['sh','fk','p2'],c:'ok',b:.6},{p:['p1','p2','f'],c:'alt',b:.3}],
+  legend:{ok:'création des processus',alt:'données'}}
+};
+
+/* ---------- carte du héros : un nœud par projet, deux dispositions ---------- */
+var HN={
+  services:['router','Routage','OSPF · BGP · RIP','Administration et services réseau'],
+  pentest:['host','Poste d’audit','Nmap · Metasploit','Pentest et analyse de vulnérabilités'],
+  vpn:['router','Site distant','tunnel OpenVPN','Infrastructure VPN sécurisée'],
+  stormshield:['fw','Firewall','Stormshield','Sécurisation d’une infrastructure réseau'],
+  dmz:['fw','Filtrage DMZ','iptables','Mise en place d’une DMZ et filtrage réseau'],
+  inception:['server','Inception','Docker · NGINX · TLS','Inception, infrastructure conteneurisée'],
+  ftirc:['server','ft_irc','C++ · sockets','ft_irc, serveur IRC en C++'],
+  ldap:['db','Annuaire LDAP','OpenLDAP','Administration d’un annuaire LDAP'],
+  supervision:['server','Supervision','Nagios · SNMP','Supervision d’infrastructures réseau'],
+  minishell:['term','Minishell','C · Unix','Minishell, shell Unix en C'],
+  offensive:['host','Labo offensif','Scapy · GoPhish','Sécurité offensive et attaques réseau'],
+  sw:['sw']
+};
+var HERO={
+  w:{vb:[620,480],
+    zones:[{t:'Réseau externe',c:'ext',r:[8,8,168,464]},{t:'DMZ',c:'dmz',r:[262,8,350,140]},{t:'Réseau interne',c:'lan',r:[262,250,350,222]}],
+    pos:{services:[92,98,'t'],pentest:[92,228],vpn:[92,362],stormshield:[219,208,'r'],dmz:[322,102,'t'],inception:[440,102,'t'],ftirc:[556,102,'t'],sw:[312,375],ldap:[432,326,'t'],supervision:[560,326,'t'],minishell:[432,424],offensive:[560,424]},
+    links:[['services','stormshield'],['pentest','stormshield'],['vpn','stormshield',{tun:1}],['stormshield','dmz'],['dmz','inception'],['inception','ftirc'],['stormshield','sw'],['sw','ldap'],['sw','supervision'],['sw','minishell'],['sw','offensive']],
+    flows:[{p:['services','stormshield','dmz','inception'],c:'ok',n:2},{p:['pentest','stormshield'],c:'bad',drop:1,n:2},{p:['vpn','stormshield','sw','ldap'],c:'alt'},{p:['supervision','sw','stormshield','dmz','inception','ftirc'],c:'ok',b:2},{p:['minishell','sw','stormshield','services'],c:'ok',b:1},{p:['offensive','sw'],c:'bad',drop:1,b:.5}]},
+  m:{vb:[360,614],
+    zones:[{t:'Réseau externe',c:'ext',r:[6,6,348,128]},{t:'DMZ',c:'dmz',r:[6,250,166,358]},{t:'Réseau interne',c:'lan',la:'r',r:[188,250,166,358]}],
+    pos:{services:[62,96,'t'],pentest:[180,96,'t'],vpn:[298,96,'t'],stormshield:[180,192,'r'],dmz:[38,314,'r'],inception:[38,404,'r','Docker · NGINX'],ftirc:[38,494,'r'],sw:[216,300],ldap:[216,368,'r'],supervision:[216,438,'r'],minishell:[216,508,'r'],offensive:[216,576,'r']},
+    links:[['services','stormshield'],['pentest','stormshield'],['vpn','stormshield',{tun:1}],['stormshield','dmz'],['dmz','inception'],['inception','ftirc'],['stormshield','sw'],['sw','ldap'],['ldap','supervision'],['supervision','minishell'],['minishell','offensive']],
+    flows:[{p:['services','stormshield','dmz','inception'],c:'ok',n:2},{p:['pentest','stormshield'],c:'bad',drop:1},{p:['vpn','stormshield','sw','ldap'],c:'alt'},{p:['supervision','ldap','sw','stormshield'],c:'ok',b:1.2},{p:['offensive','minishell'],c:'bad',drop:1,b:.4}]}
+};
+function heroSpec(mobile){
+  var L=mobile?HERO.m:HERO.w;
+  return{vb:L.vb,speed:mobile?48:58,zones:L.zones,links:L.links,flows:L.flows,
+    alt:'Carte réseau des projets : réseau externe, firewall, DMZ et réseau interne. Chaque nœud ouvre la fiche d’un projet.',
+    nodes:Object.keys(L.pos).map(function(id){var m=HN[id],p=L.pos[id];return{id:id,k:m[0],t:m[1],s:p[3]||m[2],title:m[3],x:p[0],y:p[1],lp:p[2],go:id==='sw'?null:id,bad:id==='offensive'}})};
+}
+
+/* ---------- explorateur de projets ---------- */
+var ex=document.querySelector('.explorer'),heroFig=document.getElementById('hero-map'),selectById=function(){};
+if(ex){
+  var view=ex.querySelector('.pview'),arts=[].slice.call(ex.querySelectorAll('.proj')),groups=[].slice.call(ex.querySelectorAll('.pgroup'));
+  var fbtns=[].slice.call(document.querySelectorAll('.fbtn')),wide=window.matchMedia('(min-width: 980px)'),active=null,byId={};
+  var syncHero=function(){
+    if(!heroFig)return;
+    [].forEach.call(heroFig.querySelectorAll('.n.go'),function(n){n.classList.toggle('on',!!active&&n.getAttribute('data-go')===active.dataset.id)});
+  };
+  var place=function(){
+    arts.forEach(function(a){
+      var on=a===active;
+      a.classList.toggle('on',on);a._row.setAttribute('aria-expanded',on?'true':'false');a._body.hidden=!on;
+      if(on&&wide.matches){if(a._body.parentNode!==view){while(view.firstChild){var c=view.firstChild;c._home.appendChild(c)}view.appendChild(a._body)}}
+      else if(a._body.parentNode!==a)a.appendChild(a._body);
+    });
+    syncHero();
+  };
+  var select=function(a,user){
+    if(!a)return;
+    active=a;place();
+    if(user&&!wide.matches){var top=a.getBoundingClientRect().top;if(top<60||top>window.innerHeight*.45)a.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'})}
+  };
+  var applyFilter=function(f){
+    var first=null;
+    fbtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===f?'true':'false')});
+    arts.forEach(function(a){var show=f==='all'||a.dataset.tags.split(' ').indexOf(f)>-1;a.hidden=!show;if(show&&!first)first=a});
+    groups.forEach(function(g){g.hidden=!g.querySelector('.proj:not([hidden])')});
+    if(!active||active.hidden)select(first);else place();
+  };
+  arts.forEach(function(a){
+    byId[a.dataset.id]=a;a._row=a.querySelector('.prow');a._body=a.querySelector('.pbody');a._body._home=a;
+    var fig=a._body.querySelector('.topo'),spec=DIA[a.dataset.id];
+    if(fig&&spec)fig.innerHTML=draw(spec)+'<figcaption>'+legend(spec)+'</figcaption>';
+    a._row.addEventListener('click',function(){select(a,true)});
+  });
+  fbtns.forEach(function(b){b.addEventListener('click',function(){applyFilter(b.dataset.f)})});
+  if(wide.addEventListener)wide.addEventListener('change',place);else if(wide.addListener)wide.addListener(place);
+  select(arts[0]);
+  selectById=function(id){
+    var a=byId[id];if(!a)return;
+    if(a.hidden)applyFilter('all');
+    select(a);
+    (wide.matches?document.getElementById('projets'):a).scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'});
+    try{a._row.focus({preventScroll:true})}catch(e){}
+  };
+  ex._sync=syncHero;
+}
+
+/* ---------- carte du héros ---------- */
+if(heroFig){
+  var holder=heroFig.querySelector('.hero-svg'),small=window.matchMedia('(max-width: 560px)');
+  var renderHero=function(){
+    heroFig.classList.toggle('m',small.matches);
+    holder.innerHTML=draw(heroSpec(small.matches));
+    if(ex&&ex._sync)ex._sync();
+  };
+  renderHero();
+  if(small.addEventListener)small.addEventListener('change',renderHero);else if(small.addListener)small.addListener(renderHero);
+  heroFig.addEventListener('click',function(e){
+    var n=e.target.closest?e.target.closest('.n.go'):null;if(!n)return;
+    e.preventDefault();selectById(n.getAttribute('data-go'));
+  });
+}
+})();
+</script>
+</body>
+</html>
