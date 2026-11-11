@@ -349,6 +349,26 @@ body{padding-top:4px}
 .js .pview.glass{padding:1.1rem}
 .pfoot{margin-top:.6rem}
 @media (prefers-reduced-motion:reduce){.lk.flow,.pulse{animation:none!important}}
+/* ===== animations (déplacement et transparence seulement) ===== */
+@keyframes up{from{opacity:0;transform:translate3d(0,18px,0)}to{opacity:1;transform:none}}
+.js .hero-grid>div>*,.js .hero-map{animation:up .75s cubic-bezier(.2,.7,.2,1) both}
+.js .hero-grid>div>:nth-child(2){animation-delay:.09s}
+.js .hero-grid>div>:nth-child(3){animation-delay:.18s}
+.js .hero-grid>div>:nth-child(4){animation-delay:.27s}
+.js .hero-grid>div>:nth-child(5){animation-delay:.36s}
+.js .hero-map{animation-delay:.25s}
+.sec-head h2::after{content:"";display:block;width:46px;height:3px;margin-top:.65rem;border-radius:2px;background:var(--accent);transform-origin:left;transition:transform .7s .12s cubic-bezier(.2,.7,.2,1)}
+.js .sec:not(.seen) .sec-head h2::after{transform:scaleX(0)}
+.rv{opacity:0;transform:translate3d(0,20px,0)}
+.rv.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0)*75ms)}
+.tile,.skill,.tl-card{transition:transform .25s ease,box-shadow .25s ease}
+.tile:not(.rv):hover,.skill:not(.rv):hover,.tl-card:hover{transform:translate3d(0,-3px,0);box-shadow:0 20px 44px -28px color-mix(in srgb,var(--accent) 60%,transparent)}
+.nav a{position:relative}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.nav a[aria-current="true"]{color:var(--fg)}
+.nav a[aria-current="true"]::after{transform:scaleX(1)}
+.btn:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){.js .hero-grid>div>*,.js .hero-map{animation:none}.rv{opacity:1;transform:none}.js .sec:not(.seen) .sec-head h2::after{transform:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
@@ -1259,6 +1279,38 @@ if(mtOut&&mtIn){
   document.getElementById('mterm').addEventListener('click',function(e){if(e.target.tagName!=='BUTTON'&&!String(window.getSelection())){mtIn.focus({preventScroll:true})}});
   mtRun('whoami');mtLine('o','Tapez help, ou cliquez une commande ci-dessous.');mtOut.scrollTop=0;
 }
+
+/* ---------- animations : apparition au défilement, rubrique active ----------
+   Un contrôle de position léger au défilement, plus un filet de sécurité : rien ne peut rester masqué. */
+(function(){
+  var watch=[],secs=[].slice.call(document.querySelectorAll('.sec')),links={},curId=null,last=0,trail=0;
+  [].forEach.call(document.querySelectorAll('.nav a[href^="#"]'),function(a){links[a.getAttribute('href').slice(1)]=a});
+  function check(){
+    var vh=window.innerHeight,i,w,r,cur=null;
+    for(i=watch.length-1;i>=0;i--){w=watch[i];r=w.el.getBoundingClientRect();if(r.top<vh*w.at&&r.bottom>0){watch.splice(i,1);w.fn(w.el)}}
+    secs.forEach(function(sec){r=sec.getBoundingClientRect();if(r.top<=vh*.45&&r.bottom>vh*.45)cur=sec.id});
+    if(cur!==curId){curId=cur;Object.keys(links).forEach(function(k){links[k].setAttribute('aria-current',k===cur?'true':'false')})}
+  }
+  function show(t){
+    t.classList.add('in');
+    var done=function(){t.classList.remove('rv','in');t.style.removeProperty('--i')};
+    t.addEventListener('transitionend',function h(ev){if(ev.propertyName==='opacity'){t.removeEventListener('transitionend',h);done()}});
+    setTimeout(done,1600);
+  }
+  if(reduce){secs.forEach(function(x){x.classList.add('seen')})}
+  else{
+    secs.forEach(function(sec){watch.push({el:sec,at:.86,fn:function(e){e.classList.add('seen')}})});
+    var limit=window.innerHeight*.94;
+    [].forEach.call(document.querySelectorAll('.tile,.skill,.tl-item,.row,.clist li,.explorer'),function(n){
+      if(n.getBoundingClientRect().top<limit)return;
+      var k=0,sib=n;while((sib=sib.previousElementSibling))k++;
+      n.style.setProperty('--i',k%3);n.classList.add('rv');watch.push({el:n,at:.94,fn:show});
+    });
+  }
+  window.addEventListener('scroll',function(){var n=Date.now();if(n-last>80){last=n;check()}clearTimeout(trail);trail=setTimeout(check,130)},{passive:true});
+  var guard=setInterval(function(){check();if(!watch.length)clearInterval(guard)},500);
+  check();
+})();
 
 /* ---------- fond réactif : maillage révélé sous le pointeur, paquets sur la grille, onde au clic ---------- */
 var cv=document.getElementById('bg');
