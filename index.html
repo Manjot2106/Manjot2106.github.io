@@ -382,7 +382,7 @@ body{padding-top:4px}
 .btn-p{box-shadow:0 2px 0 color-mix(in srgb,var(--accent-fill) 55%,#000)}
 .btn:active,.fbtn:active,.icon-btn:active,.mt-chips button:active{transform:translate3d(0,2px,0);box-shadow:0 0 0 transparent}
 @media (prefers-reduced-motion:reduce){.glass:not(.rv),.tile:not(.rv):hover,.skill:not(.rv):hover,.tl-card:hover{transform:none}.hero::before,.hero-svg,.pbody .topo svg{transform:none}}
-/* ===== v4 : corrections, carte inclinée, câble, compteur, timeline, chiffres, compétences reliées, pied géant ===== */
+/* ===== v4 : corrections, carte inclinée, compteur, timeline, chiffres, compétences reliées, pied géant ===== */
 .sec{overflow-x:clip}
 .tile{grid-template-columns:minmax(0,1fr)}
 .mt-bar{flex-wrap:wrap}
@@ -400,16 +400,6 @@ body{padding-top:4px}
 .hero-map .pk{transition:opacity .4s}
 .hero-map .n.flash .g{stroke:var(--accent)}
 .topo.off .lk.flow{animation-play-state:paused}
-/* câble T568B : il descend dans la marge, se déroule avec la lecture, une dérivation par rubrique */
-.cable{position:absolute;z-index:0;pointer-events:none;--stripes:linear-gradient(90deg,color-mix(in srgb,var(--c-or) 45%,#fff) 0 12.5%,var(--c-or) 12.5% 25%,color-mix(in srgb,var(--c-gr) 45%,#fff) 25% 37.5%,var(--c-bl) 37.5% 50%,color-mix(in srgb,var(--c-bl) 45%,#fff) 50% 62.5%,var(--c-gr) 62.5% 75%,color-mix(in srgb,var(--c-br) 45%,#fff) 75% 87.5%,var(--c-br) 87.5% 100%)}
-.cable::before,.cable-fill{content:"";position:absolute;inset:0;border-radius:3px;background:var(--stripes)}
-.cable::before{opacity:.13}
-.cable-fill{transform-origin:50% 0;will-change:transform;box-shadow:0 0 12px -2px color-mix(in srgb,var(--c-or) 55%,transparent)}
-.cable-head{position:absolute;left:50%;top:-3px;width:18px;height:22px;margin-left:-9px;border-radius:3px 3px 6px 6px;background:var(--surface);border:1.5px solid var(--line-strong);box-shadow:0 0 16px -2px color-mix(in srgb,var(--accent) 70%,transparent);will-change:transform}
-.cable-head::after{content:"";position:absolute;left:4px;right:4px;top:3px;height:5px;background:repeating-linear-gradient(90deg,var(--c-or) 0 1.5px,transparent 1.5px 3px)}
-.cable-stub{position:absolute;height:6px;margin-top:-3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,var(--c-or) 0 25%,var(--c-gr) 25% 50%,var(--c-bl) 50% 75%,var(--c-br) 75% 100%);transform-origin:0 50%;transform:scaleX(0);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
-.cable-stub.on{transform:scaleX(1)}
-@media (max-width:699px){.cable-head{width:12px;height:16px;margin-left:-6px}.cable-head::after{left:2px;right:2px}}
 /* compteur de rubrique */
 .sec-count{position:fixed;right:max(12px,env(safe-area-inset-right,0px));top:50%;z-index:15;display:none;writing-mode:vertical-rl;font:500 .74rem/1 var(--font-mono);letter-spacing:.14em;color:var(--faint);opacity:0;transform:translate3d(0,-50%,0);transition:opacity .3s;pointer-events:none}
 .sec-count b{color:var(--accent);font-weight:600}
@@ -448,13 +438,12 @@ body{padding-top:4px}
 /* pied de page : le nom en lettres géantes */
 .giant{overflow:hidden;padding-top:clamp(1.5rem,4vw,3rem);border-top:1px solid var(--line)}
 .giant span{display:block;white-space:nowrap;text-align:center;font:800 min(9.2vw,11.5rem)/.84 var(--font-display);font-stretch:125%;letter-spacing:-.02em;text-transform:uppercase;color:color-mix(in srgb,var(--fg) 5%,transparent);-webkit-text-stroke:1px color-mix(in srgb,var(--fg) 34%,transparent);transform:translate3d(var(--gx,0px),0,0);will-change:transform}
-@media (prefers-reduced-motion:reduce){.hero-map:not(.m) .hero-svg svg{transform:scale(.95) rotateX(8deg);transition:none}.mag{transform:none}.giant span{transform:none}.cable-stub{transition:none}}
+@media (prefers-reduced-motion:reduce){.hero-map:not(.m) .hero-svg svg{transform:scale(.95) rotateX(8deg);transition:none}.mag{transform:none}.giant span{transform:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
-<div class="cable" id="cable" aria-hidden="true"><div class="cable-fill"></div><div class="cable-head"></div></div>
 <div class="sec-count" id="sec-count" aria-hidden="true"><b>01</b><span> / 06</span></div>
 <div class="t568 prog" id="prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
@@ -1508,7 +1497,7 @@ if(!reduce&&window.matchMedia('(hover: hover) and (pointer: fine)').matches){
   document.addEventListener('click',close);
 })();
 
-/* ---------- défilement : apparition, rubrique active, compteur, câble, timeline, pied de page ----------
+/* ---------- défilement : apparition, rubrique active, compteur, timeline, pied de page ----------
    Les blocs apparaissent avant d'entrer dans l'écran (IntersectionObserver avec marge), en moins de 400 ms,
    et un filet de sécurité affiche tout bloc resté masqué alors qu'il est à l'écran. */
 var secs=[].slice.call(document.querySelectorAll('.sec')),navLinks={},curSec=-2;
@@ -1547,25 +1536,9 @@ if(statEls.length&&!reduce&&hasIO){
   stIO.observe(statEls[0].closest('.stats'));
 }
 
-var cable=document.getElementById('cable'),cFill=cable&&cable.querySelector('.cable-fill'),cHead=cable&&cable.querySelector('.cable-head'),cGeo=null,stubs=[];
 var counter=document.getElementById('sec-count'),cntB=counter&&counter.querySelector('b'),tl=document.querySelector('.tl'),tlItems=tl?[].slice.call(tl.querySelectorAll('.tl-item')):[];
 var giant=document.querySelector('.giant span'),heroSec=document.querySelector('.hero'),scrollTick=false;
 if(counter)counter.querySelector('span').textContent=' / '+(secs.length<10?'0':'')+secs.length;
-function buildCable(){
-  if(!cable||!secs.length)return;
-  var wrap=secs[0].querySelector('.wrap'),foot=document.querySelector('footer');if(!wrap||!foot)return;
-  var sy=window.scrollY,cl=wrap.getBoundingClientRect().left+parseFloat(getComputedStyle(wrap).paddingLeft),wide=window.innerWidth>=700;
-  var w=wide?12:6,cx=cl-Math.max(13,Math.min(60,cl*.42)),y0=64,H=Math.max(0,foot.getBoundingClientRect().top+sy+8-y0);
-  cable.style.left=(cx-w/2).toFixed(1)+'px';cable.style.top=y0+'px';cable.style.width=w+'px';cable.style.height=H.toFixed(1)+'px';
-  stubs.forEach(function(st){st.el.remove()});stubs=[];
-  if(wide)secs.forEach(function(sec){
-    var lab=sec.querySelector('.sec-no')||sec.querySelector('h2');if(!lab)return;
-    var r=lab.getBoundingClientRect(),y=r.top+sy+r.height/2,len=cl-10-(cx+w/2);if(len<6)return;
-    var el=document.createElement('i');el.className='cable-stub';el.style.left=w+'px';el.style.top=(y-y0).toFixed(1)+'px';el.style.width=len.toFixed(1)+'px';
-    cable.appendChild(el);stubs.push({el:el,y:y});
-  });
-  cGeo={y0:y0,H:H};
-}
 function onFrame(){
   scrollTick=false;
   var y=window.scrollY,vh=window.innerHeight,i,r,cur=-1;
@@ -1576,12 +1549,6 @@ function onFrame(){
     if(counter){counter.classList.toggle('on',cur>=0);if(cur>=0)cntB.textContent=(cur<9?'0':'')+(cur+1)}
   }
   if(heroSec&&!reduce&&y<1400)heroSec.style.setProperty('--sy',Math.round(y));
-  if(cGeo){
-    var tip=y+vh*.62,p=reduce?1:Math.max(0,Math.min(1,(tip-cGeo.y0)/(cGeo.H||1)));
-    if(y+vh>=document.documentElement.scrollHeight-2)p=1;
-    cFill.style.transform='scaleY('+p.toFixed(4)+')';cHead.style.transform='translate3d(0,'+(p*cGeo.H).toFixed(1)+'px,0)';
-    stubs.forEach(function(st){st.el.classList.toggle('on',reduce||tip>=st.y)});
-  }
   if(tl){
     r=tl.getBoundingClientRect();
     if(r.bottom>-200&&r.top<vh+200){
@@ -1594,10 +1561,8 @@ function onFrame(){
 }
 function askFrame(){if(scrollTick)return;scrollTick=true;window.requestAnimationFrame(onFrame);setTimeout(function(){if(scrollTick)onFrame()},140)}
 window.addEventListener('scroll',askFrame,{passive:true});
-window.addEventListener('resize',function(){buildCable();askFrame()});
-if(window.ResizeObserver)new ResizeObserver(function(){buildCable();askFrame()}).observe(document.body);
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){buildCable();askFrame()});
-buildCable();onFrame();
+window.addEventListener('resize',askFrame);
+onFrame();
 
 /* ---------- fond réactif : maillage révélé sous le pointeur, paquets sur la grille, onde au clic ---------- */
 var cv=document.getElementById('bg');
